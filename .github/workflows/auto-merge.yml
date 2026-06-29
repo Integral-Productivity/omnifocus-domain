@@ -1,0 +1,19 @@
+# Standard auto-merge caller. Identical to the Tier 1/2 templates; kept here so
+# the Tier 3 spec can be copied as a complete unit without cross-tier reads.
+
+name: Auto-Merge
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  auto-merge:
+    name: Auto-Merge
+    uses: Integral-Productivity/reusable-workflows/.github/workflows/reusable-auto-merge.yml@main
+    secrets:
+      OP_SERVICE_ACCOUNT_TOKEN: ${{ secrets.OP_SERVICE_ACCOUNT_TOKEN }}
