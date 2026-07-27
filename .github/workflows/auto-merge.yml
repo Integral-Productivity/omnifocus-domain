@@ -1,0 +1,29 @@
+# Auto-merge caller for Tier 3 plugin repos, which call the PUBLIC
+# reusable-workflows host. This is deliberately NOT identical to the Tier 1/2
+# templates: those call the PRIVATE devops-excellence reusable and forward the
+# whole-vault OP_SERVICE_ACCOUNT_TOKEN, whereas the public reusable declares
+# only the SCOPED OP_AUTOMERGE_PUBLIC_TOKEN (read-only on the ip-automation-public
+# vault, per ADR-045 / ip-bots#207). GitHub also blocks a public repo from
+# calling a private reusable workflow, which is why Tier 3 uses the public host.
+# Passing OP_SERVICE_ACCOUNT_TOKEN here is an UNDECLARED secret and fails the run
+# at compile time (startup_failure — "workflow file issue").
+#
+# The tier3-claude-plugin and tier3-omnifocus-plugin copies of this file are
+# byte-identical by design (the fitness spec sources one governance set for both).
+
+name: Auto-Merge
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  auto-merge:
+    name: Auto-Merge
+    uses: Integral-Productivity/reusable-workflows/.github/workflows/reusable-auto-merge.yml@v1
+    secrets:
+      OP_AUTOMERGE_PUBLIC_TOKEN: ${{ secrets.OP_AUTOMERGE_PUBLIC_TOKEN }}
