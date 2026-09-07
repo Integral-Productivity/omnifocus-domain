@@ -1,0 +1,23 @@
+{
+  "extraKnownMarketplaces": {
+    "compound-engineering-plugin": {
+      "source": {
+        "source": "github",
+        "repo": "EveryInc/compound-engineering-plugin"
+      }
+    },
+    "integral-productivity-internal": {
+      "source": {
+        "source": "github",
+        "repo": "Integral-Productivity/marketplace-internal"
+      }
+    }
+  },
+  "enabledPlugins": {
+    "compound-engineering@compound-engineering-plugin": true,
+    "integral-productivity-engineering@integral-productivity-internal": true,
+    "software-architecture@integral-productivity-internal": true,
+    "product-architecture@integral-productivity-internal": true,
+    "lean-management@integral-productivity-internal": true
+  }
+}
