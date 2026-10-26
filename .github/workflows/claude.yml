@@ -31,6 +31,6 @@ jobs:
       (github.event_name == 'pull_request_review_comment' && contains(github.event.comment.body, '@claude')) ||
       (github.event_name == 'pull_request_review' && contains(github.event.review.body, '@claude')) ||
       (github.event_name == 'issues' && (contains(github.event.issue.body, '@claude') || contains(github.event.issue.title, '@claude')))
-    uses: Integral-Productivity/reusable-workflows/.github/workflows/reusable-claude.yml@4be842a9ffc6e36b7f5c7e4cda0d2119e65b90dd # v1.4.0
+    uses: Integral-Productivity/reusable-workflows/.github/workflows/reusable-claude.yml@8c04e03324d85c1f0432890946fdd04d30d64325 # v1.6.0
     secrets:
       CLAUDE_CODE_OAUTH_TOKEN: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
